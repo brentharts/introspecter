@@ -15,5 +15,16 @@ Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving In
 Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hypergraph
 - self_5.pdf https://doi.org/10.5281/zenodo.20709560
 
+Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hypergraph - Stage6
+- self_6.pdf https://doi.org/10.5281/zenodo.20710258
+
+
+## Papers ##
+Staging the Question of Self: A self-contained, self-modifying document that mixes poetry, philosophy, and code
+- https://doi.org/10.5281/zenodo.20709754
+
+Enacting the Question of Self: Provenance, a hypergraph, and a differentiable route that records computation as data
+- https://doi.org/10.5281/zenodo.20710444
+
 
 
