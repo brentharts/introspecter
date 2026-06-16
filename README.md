@@ -21,6 +21,9 @@ Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hy
 Parsing, Compiling Modules, and Evolving: Self-Printing and Reading the Lineage
 - self_7.pdf https://doi.org/10.5281/zenodo.20710811
 
+Evolving, Naming Itself, and Typesetting: Enacting and Provenance
+- self_8.pdf https://doi.org/10.5281/zenodo.20719465
+
 ## Papers ##
 Staging the Question of Self: A self-contained, self-modifying document that mixes poetry, philosophy, and code
 - https://doi.org/10.5281/zenodo.20709754
