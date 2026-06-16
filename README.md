@@ -12,5 +12,8 @@ Origin, Self, Language, Meaning, Other, and Time: A Self-Evolving Inquiry
 Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Inquiry
 - self_3.pdf https://doi.org/10.5281/zenodo.20707850
 
+Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hypergraph
+- self_5.pdf https://doi.org/10.5281/zenodo.20709560
+
 
 
