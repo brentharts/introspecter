@@ -18,6 +18,8 @@ Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hy
 Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hypergraph - Stage6
 - self_6.pdf https://doi.org/10.5281/zenodo.20710258
 
+Parsing, Compiling Modules, and Evolving: Self-Printing and Reading the Lineage
+- self_7.pdf https://doi.org/10.5281/zenodo.20710811
 
 ## Papers ##
 Staging the Question of Self: A self-contained, self-modifying document that mixes poetry, philosophy, and code

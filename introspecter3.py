@@ -1,5 +1,5 @@
 """
-introspecter2.py — the next model's engine (v2).
+introspecter3.py — the next model's engine (v3): lineage-reading + manifold.
 
 Extends a parent PDF by DOI (full look-back), and adds over the question-only
 engine: a hypergraph (edges over many nodes), fuzzy(Greek)+precise node pairs,
@@ -10,7 +10,7 @@ from __future__ import annotations
 import ast, base64, glob, os, re, subprocess
 import numpy as np
 
-PARENT_DOI = "10.5281/zenodo.20707850"   # self_3.pdf
+PARENT_DOI = "10.5281/zenodo.20710258"   # self_6.pdf
 
 VAR_TEX = {"Omega":r"\Omega","Sigma":r"\Sigma","Lambda":r"\Lambda","mu":r"\mu",
            "Phi":r"\Phi","Tau":r"\Tau","Delta":r"\Delta","Psi":r"\Psi","rho":r"\rho"}
@@ -176,6 +176,37 @@ def act_provenance(nodes, p):
 ACTIONS.update({"provenance": act_provenance})
 
 
+# ---- circuits: an equation that compiles into MANY networks, one per symbol,
+# wired into a composite. e.g.  circuit Sigma = Phi -> Lambda -> mu : 5
+# creates a trainable net for each of Phi, Lambda, mu and chains them. The
+# numbers it returns are data; the symbols' meanings do not thereby combine.
+def _square_net(w, seed):
+    return compile_module({"dims": [w, w, w], "act": "sigmoid"}, seed)
+
+def act_circuit(nodes, p):
+    circs = p.get("circuits", [])
+    if not circs: return {"note": "no circuit equation defined"}
+    rng = np.random.default_rng(0); out = {}
+    for c in circs:
+        w = c["width"]; X = rng.random((48, w)); nets = {}
+        for i, s in enumerate(c["chain"]):                 # one trained net per symbol
+            m = _square_net(w, i); loss = train(m, X, X, epochs=200, lr=0.5)
+            nets[s] = (m, round(loss, 4))
+        x = np.ones((1, w))                                # compose along the chain
+        for s in c["chain"]: x, _ = forward(nets[s][0], x)
+        out[c["result"]] = {
+            "wiring": " -> ".join(c["chain"]),
+            "networks": {s: {"arch": f"{w}->{w}->{w}", "trained_mse": nets[s][1]}
+                         for s in c["chain"]},
+            "n_networks": len(c["chain"]),
+            "composite_output_norm": round(float(np.linalg.norm(x)), 3)}
+    return {"circuit": out,
+            "is": "several trained networks wired by the equation; the numbers are "
+                  "data, not the symbols' meanings combining"}
+
+ACTIONS.update({"circuit": act_circuit})
+
+
 # ---- parsing (protect comments AND strings before splitting on ';') ----
 def _protect(src):
     store = {}
@@ -188,7 +219,7 @@ def _protect(src):
 
 def parse(src):
     protected, store = _protect(src)
-    meta, nodes, rels, hyper, code, modules = {"nu": "0"}, {}, [], [], [], {}
+    meta, nodes, rels, hyper, code, modules, circuits = {"nu": "0"}, {}, [], [], [], {}, []
     for k, v in store.items():
         if v.startswith("```"):
             code.append(re.sub(r"```(?:python)?\n?|```", "", v, flags=re.S).strip("\n"))
@@ -220,6 +251,13 @@ def parse(src):
                 modules[mp.group(1)] = {"dims": dims, "act": mp.group(3),
                                         "arch": "->".join(map(str, dims))}
             last = "decl"; continue
+        if stmt.startswith("circuit"):                   # equation wiring many nets
+            cm = re.match(r"circuit([A-Za-z]+)=([A-Za-z>\-]+):(\d+)", stmt)
+            if cm:
+                chain = [x for x in re.split(r"->", cm.group(2)) if x]
+                circuits.append({"result": cm.group(1), "chain": chain,
+                                 "width": int(cm.group(3))})
+            last = "decl"; continue
         op = next((o for o in OPS if o in stmt), None)
         if op and ":" not in stmt:                       # binary relation
             a, b = stmt.split(op, 1); rels.append([a, op, b, ""]); last = "rel"
@@ -235,7 +273,7 @@ def parse(src):
                 nodes[key] = (parts[1], precise)
             last = "decl"
     return {"meta": meta, "nodes": nodes, "rels": rels, "hyper": hyper,
-            "code": code, "modules": modules}
+            "code": code, "modules": modules, "circuits": circuits}
 
 
 def to_questions(p):
@@ -249,9 +287,36 @@ def _funcs(path):
     return [n.name for n in ast.parse(open(path).read()).body
             if isinstance(n, ast.FunctionDef) and not n.name.startswith("_")]
 
-def title(p):
-    ws = [w.capitalize() for _, (w, _) in p["nodes"].items()]
-    return ", ".join(ws[:-1]) + ", and " + ws[-1] + ": A Self-Evolving Hypergraph" if ws else "Inquiry"
+# the title is generated from the engine's PUBLIC function names; rename a
+# function (or hide it behind a leading underscore) and the title mutates.
+TITLE_PRETTY = {
+    "read_lineage": "Reading the Lineage", "lineage_search": "Searching the Lineage",
+    "compile_module": "Compiling Modules", "to_questions": "Posing Questions",
+    "run_actions": "Enacting", "build_pdf": "Self-Printing", "evolve": "Evolving",
+    "act_provenance": "Provenance", "act_coherence": "Coherence",
+    "act_train": "Training a Self", "act_neural": "A Neural Response",
+    "act_infer": "Inference", "abstract": "Abstracting", "parse": "Parsing",
+    "forward": "A Forward Pass", "train": "Gradient Descent", "title": "Naming Itself",
+    "build_tex": "Typesetting", "act_circuit": "Wiring Networks",
+}
+def _pretty_fn(n):
+    if n in TITLE_PRETTY: return TITLE_PRETTY[n]
+    parts = n.split("_")
+    if parts and parts[0] in ("act", "to", "is", "do", "get"): parts = parts[1:]
+    return " ".join(w.capitalize() for w in parts) or n.capitalize()
+
+def title(p, engine=None):
+    import random
+    pretty, seen = [], set()
+    for f in _funcs(engine or __file__):
+        pp = _pretty_fn(f)
+        if pp not in seen: seen.add(pp); pretty.append(pp)
+    random.Random(int(p["meta"].get("nu", "0"))).shuffle(pretty)
+    head = pretty[:3] or ["Inquiry"]
+    sub = pretty[3:5] or pretty[:1]
+    h = (", ".join(head[:-1]) + ", and " + head[-1]) if len(head) > 1 else head[0]
+    s = (" and ".join(sub)) if sub else "A Self-Evolving Inquiry"
+    return f"{h}: {s}"
 
 def abstract(p, engine=None):
     n = p["meta"].get("nu", "0")
@@ -264,10 +329,15 @@ def abstract(p, engine=None):
              f"{len(lin['stages'])} ancestor stages and tracing where each term "
              f"entered --- and records that provenance as data, not as "
              f"self-understanding." if lin and lin.get("stages") else "")
+    circ = p.get("circuits", [])
+    ctext = (f" A circuit equation compiles {sum(len(c['chain']) for c in circ)} "
+             f"trainable networks --- one bound to each symbol --- and wires them into "
+             f"{len(circ)} composite(s); the equation builds the networks, and the "
+             f"numbers they return are data, not the symbols' meanings combining." if circ else "")
     return (f"Stage {n} of a self-evolving hypergraph, extended from its parent "
             f"(doi:{p['meta'].get('parent', PARENT_DOI)}) so the inquiry can look "
             f"fully back. It declares {len(p['nodes'])} nodes, each pairing a "
-            f"suggestive Greek glyph with a precise description.{mtext}{ltext} It "
+            f"suggestive Greek glyph with a precise description.{mtext}{ltext}{ctext} It "
             f"relates them by {len(p['rels'])} binary relations and {len(p['hyper'])} "
             f"hyperedges, and may trigger gated actions whose output is recorded as "
             f"data, never as an answer. The engine, introspected from its own source, "
@@ -348,15 +418,54 @@ def build_tex(p, results):
                        rf"not a claim to understand the lineage.")
     else:
         lineage_blk = r"(no ancestor PDFs were present to read.)"
+    circ = p.get("circuits", [])
+    if circ:
+        eqs = []
+        for c in circ:
+            chain = r" \longrightarrow ".join(VAR_TEX.get(s, s) for s in c["chain"])
+            eqs.append(rf"{VAR_TEX.get(c['result'], c['result'])} \;=\; {chain} "
+                       rf"\qquad (\text{{width }} {c['width']})")
+        body = r"\\[4pt] ".join(eqs)
+        circuit_blk = (r"\section*{Circuit (a new equation that wires several networks)}"
+                       r"Beyond the inherited relations, this stage adds an equation that "
+                       r"binds a small trainable network to \emph{each} symbol and composes "
+                       r"them along the arrow:"
+                       r"\begin{equation*}" + body + r"\end{equation*}"
+                       + (rf"Each such equation compiles to {sum(len(c['chain']) for c in circ)} "
+                          r"trainable networks (one per symbol), wired into a composite. "
+                          r"Building the networks is what the equation does; the training "
+                          r"losses and outputs the composite returns are recorded as data, "
+                          r"not the symbols' meanings combining."))
+    else:
+        circuit_blk = ""
     tex = TEX
     for tok, val in [("@@TITLE@@", _esc(title(p))), ("@@N@@", p["meta"].get("nu","0")),
                      ("@@PARENT@@", _esc(p["meta"].get("parent", PARENT_DOI))),
                      ("@@ABSTRACT@@", _esc(abstract(p))), ("@@MATH@@", math),
                      ("@@TERMS@@", terms), ("@@HYPER@@", "\n".join(hyper) or r"\item (none yet)"),
+                     ("@@CIRCUIT@@", circuit_blk),
                      ("@@LINEAGE@@", lineage_blk),
+                     ("@@MANIFOLD@@", _manifold_block()),
                      ("@@QUESTIONS@@", qs), ("@@BOOT@@", _bootstrap())]:
         tex = tex.replace(tok, val)
     return tex
+
+def _manifold_block():
+    import json
+    if not os.path.isfile("manifold.png"):
+        return ""
+    method = "UMAP"
+    try: method = json.load(open("manifold.json")).get("method", "UMAP")
+    except Exception: pass
+    return (r"\section*{Manifold (the geometry of the relations)}" "\n"
+            r"\begin{figure}[H]\centering"
+            r"\includegraphics[width=0.92\textwidth]{manifold.png}" "\n"
+            r"\caption{A projection of the relation co-occurrence across the lineage. "
+            r"Left: how often terms share a relation (\(\Sigma\) is densest). Right: a "
+            + method + r" projection of the same geometry. This is a map of the authored "
+            r"structure --- where the terms sit relative to one another --- not a "
+            r"discovery of hidden meaning. Computed by an external prototype "
+            r"(\texttt{umap\_manifold.py}); the engine only embeds it.}\end{figure}")
 
 def build_pdf(src=None, results=None, lineage=None):
     src = src or open("self.dsl").read()
@@ -370,6 +479,9 @@ def build_pdf(src=None, results=None, lineage=None):
     w = PdfWriter(); w.append(PdfReader(base + ".pdf"))
     w.add_attachment("introspecter3.py", open(__file__, "rb").read())
     w.add_attachment("self.dsl", src.encode())
+    for extra in ("manifold.json", "manifold.png"):
+        if os.path.isfile(extra):
+            w.add_attachment(extra, open(extra, "rb").read())
     with open(base + ".pdf", "wb") as f: w.write(f)
     return base + ".pdf"
 
@@ -396,6 +508,7 @@ TEX = r"""\documentclass[11pt]{article}
 \usepackage{fontspec}\setmonofont{DejaVu Sans Mono}[Scale=0.8]
 \usepackage{amsmath,amssymb}\usepackage[margin=1in]{geometry}
 \usepackage{fancyvrb}\usepackage[hidelinks]{hyperref}\usepackage{enumitem}
+\usepackage{graphicx}\usepackage{float}
 \usepackage{newunicodechar}
 \newunicodechar{μ}{\ensuremath{\mu}}
 \newunicodechar{∂}{\ensuremath{\partial}}
@@ -409,25 +522,37 @@ TEX = r"""\documentclass[11pt]{article}
 \begin{document}\maketitle
 \begin{abstract}@@ABSTRACT@@\end{abstract}
 \section*{Symbolic core (inherited relations)}@@MATH@@
+@@CIRCUIT@@
 \section*{Nodes (suggestive glyph + precise description)}
 \begin{description}@@TERMS@@\end{description}
 \section*{Hypergraph (questions, and the data actions returned)}
 \begin{itemize}@@HYPER@@\end{itemize}
 \section*{Questions this stage poses}\begin{itemize}@@QUESTIONS@@\end{itemize}
 \section*{Lineage read (this stage searched its ancestors)}@@LINEAGE@@
+@@MANIFOLD@@
 \section*{Lineage and provenance}
 This model extends its parent self-evolving inquiry, doi:@@PARENT@@, ingesting
-its relations so the series can look fully back \cite{p3,agi,meta,arch}. Actions
-record data beside questions; the document poses and enacts, and makes no claim
-to resolve what a self is.
+its relations so the series can look fully back \cite{p6,paper1,paper2,p3}. The
+companion papers set out the method and its discipline \cite{paper1,paper2}.
+Actions record data beside questions; the document poses and enacts, and makes
+no claim to resolve what a self is.
 \section*{Appendix: self-extraction}
-This PDF carries its engine (\texttt{introspecter2.py}) and DSL
+This PDF carries its engine (\texttt{introspecter3.py}) and DSL
 (\texttt{self.dsl}) as embedded streams. Requires \texttt{pip install pypdf
 numpy} and a LaTeX install. To produce the next stage, save and run:
 \begin{Verbatim}[fontsize=\small,frame=single]
 @@BOOT@@
 \end{Verbatim}
 \begin{thebibliography}{9}
+\bibitem{p6} B.~Hartshorn, \emph{Origin, Self, Language, Meaning, Other, Time,
+and Difference: A Self-Evolving Hypergraph} (self\_6, parent).
+doi:10.5281/zenodo.20710258
+\bibitem{paper1} B.~Hartshorn, \emph{Staging the Question of Self: A
+self-contained, self-modifying document that mixes poetry, philosophy, and
+code}. doi:10.5281/zenodo.20709754
+\bibitem{paper2} B.~Hartshorn, \emph{Enacting the Question of Self: Provenance,
+a hypergraph, and a differentiable route that records computation as data}.
+doi:10.5281/zenodo.20710444
 \bibitem{p3} B.~Hartshorn, \emph{Origin, Self, Language, Meaning, Other, Time,
 and Difference: A Self-Evolving Inquiry} (self\_3). doi:10.5281/zenodo.20707850
 \bibitem{agi} B.~Hartshorn, \emph{Towards Self-Evolving AGI via Emergent DSL}.
