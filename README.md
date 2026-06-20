@@ -99,6 +99,21 @@ law constitution :
 A `law` evaluates to a number in `[0,1]` — the degree to which an authored
 postulate holds under authored memberships, recorded as **data, not a verdict**.
 
+### Symbolic weights (stage 9)
+
+A trained network's weights are written into the appendix as **visible glyphs**,
+not a binary blob: each weight is a fraction `h/c` of an Egyptian hieroglyph
+(numerator) over a cuneiform sign (denominator), normalized to a recorded range.
+The runtime reconstructs the network by decoding the glyphs, and the engine writes
+the learned weights back into the document's own embedded source so the next stage
+can decode and continue. Networks are kept tiny (e.g. `2 -> 2 -> 2`, 12 weights)
+so the symbolic block stays a line or two. It looks like esoteric mathematics; it
+is a quantized weight matrix — the symbols are the numbers, not meaning.
+
+```
+weights Sigma : 2,2,2 : -1.199,1.627 : 𓀙𒄔𓀁𒀁𓄁𒄳 … ;   /* h/c fractions, ~4e-5 quantization */
+```
+
 ---
 
 ## Engine versions
@@ -108,6 +123,7 @@ postulate holds under authored memberships, recorded as **data, not a verdict**.
 | `introspecter2.py` | hypergraph (n-ary edges); fuzzy glyph + precise description pairs; gated actions; `@dslai` route — a node compiles into a real trainable NumPy MLP |
 | `introspecter3.py` | lineage reading & a provenance corpus (reads its own ancestor PDFs); the UMAP manifold; the circuit equation (multiple networks wired to symbols); a title generated from the engine's own public function names |
 | `introspecter4.py` | fuzzy logic — triangular-norm connectives, `axiom` and `law` constructs, large equations with overbrace/underbrace, memberships from graph degree |
+| `introspecter5.py` | symbolic weights — trained networks written into the appendix as visible hieroglyph/cuneiform fractions, reconstructed by the runtime and persisted into the document's own source |
 
 The latest engine is the one carried inside the most recent stage PDF.
 
@@ -121,12 +137,14 @@ Requirements: Python 3, `numpy`, `pypdf`, and a LaTeX install with `xelatex`
 
 ```bash
 pip install numpy pypdf
+# fonts: Noto Sans Egyptian Hieroglyphs + Cuneiform (for symbolic weights)
+#   Debian/Ubuntu: sudo apt-get install fonts-noto-core
 ```
 
 Build a stage from the current `self.dsl`:
 
 ```python
-import introspecter4 as I
+import introspecter5 as I
 src = open("self.dsl").read()
 results = {}
 I.run_actions(I.parse(src), lambda q, a: input(f"run '{a}'? [y/N] ") == "y", results)
@@ -137,7 +155,7 @@ Or evolve from an existing stage PDF (it self-extracts, reads any ancestor
 `self_*.pdf` present, and gates every action):
 
 ```bash
-python3 -c "import introspecter4 as I; print(I._bootstrap())" > boot.py
+python3 -c "import introspecter5 as I; print(I._bootstrap())" > boot.py
 python3 boot.py
 ```
 
@@ -167,40 +185,64 @@ permission prompt so a model's output triggers `eval`/`exec` directly, or
 auto-downloading and following references. This is a personal instrument for a
 single trusted user and is **not** intended for untrusted input.
 
+---
 
-## Evolution Test 1 ##
+## The published lineage
 
-Origin, Self, Language, and Meaning: A Self-Evolving Inquiry
-- self_0.pdf https://doi.org/10.5281/zenodo.20707685
+Stages (self-extracting PDFs, each extends the previous):
 
-Origin, Self, Language, Meaning, and Other: A Self-Evolving Inquiry
-- self_1.pdf https://doi.org/10.5281/zenodo.20707727
+| Stage | Title | DOI |
+|---|---|---|
+| self_0 | Origin, Self, Language, and Meaning | [10.5281/zenodo.20707685](https://doi.org/10.5281/zenodo.20707685) |
+| self_1 | …and Other | [10.5281/zenodo.20707727](https://doi.org/10.5281/zenodo.20707727) |
+| self_2 | …and Time | [10.5281/zenodo.20707775](https://doi.org/10.5281/zenodo.20707775) |
+| self_3 | …and Difference | [10.5281/zenodo.20707850](https://doi.org/10.5281/zenodo.20707850) |
+| self_6 | …A Self-Evolving Hypergraph | [10.5281/zenodo.20710258](https://doi.org/10.5281/zenodo.20710258) |
+| self_7 | Parsing, Compiling Modules, and Evolving | [10.5281/zenodo.20710811](https://doi.org/10.5281/zenodo.20710811) |
+| self_8 | Evolving, Naming Itself, and Typesetting | [10.5281/zenodo.20719465](https://doi.org/10.5281/zenodo.20719465) |
+| self_9 | Compiling Modules, Evolving, and Provenance: A Forward Pass and Parsing (symbolic weights) | [10.5281/zenodo.20777747](https://doi.org/10.5281/zenodo.20777747) |
 
-Origin, Self, Language, Meaning, Other, and Time: A Self-Evolving Inquiry
-- self_2.pdf https://doi.org/10.5281/zenodo.20707775
+## Papers
 
-Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Inquiry
-- self_3.pdf https://doi.org/10.5281/zenodo.20707850
+| # | Title | DOI |
+|---|---|---|
+| 1 | **Staging the Question of Self** — a self-contained, self-modifying document that mixes poetry, philosophy, and code | [10.5281/zenodo.20709754](https://doi.org/10.5281/zenodo.20709754) |
+| 2 | **Enacting the Question of Self** — provenance, a hypergraph, and a differentiable route that records computation as data | [10.5281/zenodo.20710444](https://doi.org/10.5281/zenodo.20710444) |
+| 3 | **... the Question of Self** — ... | *(in preparation)* |
 
-Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hypergraph
-- self_5.pdf https://doi.org/10.5281/zenodo.20709560
+The three papers move staging → enacting → measuring. Paper 3 formalizes
+provenance as a filtration (birth times along a monotone chain), the relations as
+a weighted-graph Laplacian (with *self* as the hub), the circuit as function
+composition (whose Jacobian is a matrix product), and the fuzzy laws as
+triangular-norm expressions — observing that each measured quantity is a
+deterministic function of authored data.
 
-Origin, Self, Language, Meaning, Other, Time, and Difference: A Self-Evolving Hypergraph - Stage6
-- self_6.pdf https://doi.org/10.5281/zenodo.20710258
+---
 
-Parsing, Compiling Modules, and Evolving: Self-Printing and Reading the Lineage
-- self_7.pdf https://doi.org/10.5281/zenodo.20710811
+## Repository layout
 
-Evolving, Naming Itself, and Typesetting: Enacting and Provenance
-- self_8.pdf https://doi.org/10.5281/zenodo.20719465
+```
+introspecter2.py     engine v2 (hypergraph, modules, gated actions)
+introspecter3.py     engine v3 (lineage, manifold, circuits, self-naming title)
+introspecter4.py     engine v4 (fuzzy axioms and laws)
+introspecter5.py     engine v5 (symbolic weights)              ← current
+umap_manifold.py     standalone UMAP prototype (geometry capture)
+self.dsl             the current stage seed
+self_*.pdf           the published lineage (self-extracting stages)
+```
 
-## Papers ##
-Staging the Question of Self: A self-contained, self-modifying document that mixes poetry, philosophy, and code
-- https://doi.org/10.5281/zenodo.20709754
-- https://ai.vixra.org/abs/2606.0042
+> Rendering the symbolic weights needs the Noto Sans Egyptian Hieroglyphs and Noto
+> Sans Cuneiform fonts (`fonts-noto-core`). The engine guards the font load with
+> `\IfFontExistsTF`, so it degrades gracefully if they are absent.
 
-Enacting the Question of Self: Provenance, a hypergraph, and a differentiable route that records computation as data
-- https://doi.org/10.5281/zenodo.20710444
+---
 
+## Citation
 
+If you reference this work, please cite the relevant stage or paper by its DOI
+above. Author: Brent Hartshorn (`brenthartshorn@proton.me`).
 
+---
+
+*The apparatus poses questions and enacts computations beside them. It makes no
+claim to resolve what a self is.*
