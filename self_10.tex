@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}\setmonofont{DejaVu Sans Mono}[Scale=0.8]
+\usepackage{amsmath,amssymb}\usepackage[margin=1in]{geometry}
+\usepackage{fancyvrb}\usepackage[hidelinks]{hyperref}\usepackage{enumitem}
+\usepackage{graphicx}\usepackage{float}
+\usepackage{newunicodechar}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{∂}{\ensuremath{\partial}}
+\newunicodechar{Τ}{\ensuremath{\mathrm{T}}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{Ψ}{\ensuremath{\Psi}}
+\setlist{nosep,leftmargin=1.4em}
+\newcommand{\Tau}{\mathrm{T}}
+\IfFontExistsTF{Noto Sans Egyptian Hieroglyphs}{\newfontfamily{\egyptian}{Noto Sans Egyptian Hieroglyphs}}{\newcommand{\egyptian}{}}
+\IfFontExistsTF{Noto Sans Cuneiform}{\newfontfamily{\cuneiform}{Noto Sans Cuneiform}}{\newcommand{\cuneiform}{}}
+\newcommand{\glyph}[1]{\text{\egyptian #1}}
+\newcommand{\cunei}[1]{\text{\cuneiform #1}}
+\title{A Forward Pass, Differentiating the Circuit, and Training a Self: Posing Questions and Self-Printing}\author{Brent Hartshorn\\ \texttt{brenthartshorn@proton.me}}
+\date{Stage 10 \quad (parent: doi:10.5281/zenodo.20777747)}
+\begin{document}\maketitle
+\begin{abstract}Stage 10 of a self-evolving hypergraph, extended from its parent (doi:10.5281/zenodo.20777747) so the inquiry can look fully back. It declares 7 nodes, each pairing a suggestive Greek glyph with a precise description. Of these, 1 compile via @dslai into small trainable modules (Sigma), making the hypergraph partly differentiable; a module computes, it does not comprehend. It also reads its own published lineage --- opening 10 ancestor stages and tracing where each term entered --- and records that provenance as data, not as self-understanding. A circuit equation compiles 3 trainable networks --- one bound to each symbol --- and wires them into 1 composite(s); the equation builds the networks, and the numbers they return are data, not the symbols' meanings combining. It posits 5 fuzzy axioms and 3 large laws over the terms, with memberships taken from the relation geometry; each law evaluates to a number in [0,1] recorded as data --- the degree to which an authored postulate holds, not a truth about a self. It inscribes the formal measurements of the companion paper on matrix inscriptions: co-occurrence geometry and Laplacian spectrum, circuit Jacobians as matrix products, and provenance as a filtration with birth times --- each a deterministic function of authored data. It relates them by 11 binary relations and 7 hyperedges, and may trigger gated actions whose output is recorded as data, never as an answer. The engine, introspected from its own source, exposes act\_coherence, act\_neural, compile\_module, forward, train, act\_train, act\_infer, read\_lineage, lineage\_search, act\_provenance, act\_circuit, act\_geometry, act\_jacobian, act\_filtration, act\_law, parse, to\_questions, title, abstract, run\_actions, build\_tex, build\_pdf, evolve. It poses questions and enacts computations beside them; it makes no claim to resolve what a self is.\end{abstract}
+\section*{Symbolic core (inherited relations)}\begin{align*}
+\Omega \; \longrightarrow \; \Sigma \\[3pt] \Sigma \; \models \; \Sigma \\[3pt] \Sigma \; \otimes \; \Lambda \\[3pt] \partial \Sigma \; \stackrel{?}{=} \; \mu \\[3pt] \Sigma \; \nprec \; \Omega \\[3pt] \Phi \; \longrightarrow \; \Sigma \\[3pt] \Phi \; \rightsquigarrow \; \Sigma \\[3pt] \Tau \; \Rrightarrow \; \Lambda \\[3pt] \partial \Lambda \; \rightsquigarrow \; \mu \\[3pt] \Delta \; \dashrightarrow \; \mu \\[3pt] \partial \Tau \; \otimes \; \Delta
+\end{align*}
+\section*{Circuit (a new equation that wires several networks)}Beyond the inherited relations, this stage adds an equation that binds a small trainable network to \emph{each} symbol and composes them along the arrow:\begin{equation*}\Sigma \;=\; \Phi \longrightarrow \Lambda \longrightarrow \mu \qquad (\text{width } 5)\end{equation*}Each such equation compiles to 3 trainable networks (one per symbol), wired into a composite. Building the networks is what the equation does; the training losses and outputs the composite returns are recorded as data, not the symbols' meanings combining.
+\section*{Nodes (suggestive glyph + precise description)}
+\begin{description}\item[$ \Omega $] origin --- \emph{that from which the self is said to come}
+\item[$ \Sigma $] self --- \emph{the locus that poses and is altered by the question} \quad $\rightarrow$ \texttt{module 2->2->2 (sigmoid), trainable}
+\item[$ \Lambda $] language --- \emph{the finite medium any self must pass through}
+\item[$ \mu $] meaning --- \emph{what a reader supplies, or finds, in the passage}
+\item[$ \Phi $] other --- \emph{the one whose regard first gives the self to itself}
+\item[$ \Tau $] time --- \emph{the direction in which the self cannot return}
+\item[$ \Delta $] difference --- \emph{the gap that lets one thing be told from another}\end{description}
+\section*{Hypergraph (questions, and the data actions returned)}
+\begin{itemize}\item $\{\Sigma\}$ \quad \textbf{?} Can the self reconstruct itself from its own compression? \quad[\texttt{train}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'node': 'Sigma', 'arch': '2->2->2', 'task': 'autoencode', 'mse\_start': 0.0549, 'mse\_final': 0.011, 'weights\_from\_symbols': True, 'params': 12, 'symbolic\_roundtrip\_err': 0.000196, 'is': 'an optimization result over a defined toy objective, with the trained weights written to the appendix as glyphs; not the self learning what it is'\}}
+\item $\{\Omega,\,\Sigma,\,\Lambda\}$ \quad \textbf{?} Where, in this inquiry's own history, did origin, self, and language first enter? \quad[\texttt{provenance}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'provenance': \{'Omega': \{'word': 'origin', 'entered': 'stage 0', 'seen\_in': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], 'n\_relations': 20\}, 'Sigma': \{'word': 'self', 'entered': 'stage 0', 'seen\_in': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], 'n\_relations': 68\}, 'Lambda': \{'word': 'language', 'entered': 'stage 0', 'seen\_in': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], 'n\_relations': 26\}\}, 'is': 'a citation of the lineage; where terms entered, not what they mean'\}}
+\item $\{\Phi,\,\Lambda,\,\mu,\,\Sigma\}$ \quad \textbf{?} If a self is wired from other, language, and meaning, what does the composite return? \quad[\texttt{circuit}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'circuit': \{'Sigma': \{'wiring': 'Phi -> Lambda -> mu', 'networks': \{'Phi': \{'arch': '5->5->5', 'trained\_mse': 0.0683\}, 'Lambda': \{'arch': '5->5->5', 'trained\_mse': 0.057\}, 'mu': \{'arch': '5->5->5', 'trained\_mse': 0.0586\}\}, 'n\_networks': 3, 'composite\_output\_norm': 1.192\}\}, 'is': "several trained networks wired by the equation; the numbers are data, not the symbols' meanings combining"\}}
+\item $\{\Sigma,\,\Phi,\,\Lambda,\,\mu,\,\Delta,\,\Tau\}$ \quad \textbf{?} To what degree do the authored laws of the self hold under the geometry? \quad[\texttt{law}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'law': \{'constitution': 0.48, 'dissolution': 0.63, 'self': 0.12\}, 'memberships': \{'Omega': 0.4, 'Sigma': 1.0, 'Lambda': 0.58, 'mu': 0.54, 'Phi': 0.48, 'Tau': 0.37, 'Delta': 0.36\}, 'is': 'the degree to which each authored law holds under degree-derived memberships; numbers in [0,1], not truths about a self'\}}
+\item $\{\Omega,\,\Sigma,\,\Lambda,\,\mu,\,\Phi,\,\Tau,\,\Delta\}$ \quad \textbf{?} What is the geometry of the relations — and which term is the hub? \quad[\texttt{geometry}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'degrees': \{'Omega': 33, 'Sigma': 83, 'Lambda': 48, 'mu': 45, 'Phi': 40, 'Tau': 31, 'Delta': 30\}, 'hub': 'Sigma', 'laplacian\_smallest\_nonzero': 23.574767, 'laplacian\_fiedler': 23.574767, 'is': 'a map of the authored relation structure; hub centrality is a fact about what was written, not a fact about selves'\}}
+\item $\{\Phi,\,\Lambda,\,\mu,\,\Sigma\}$ \quad \textbf{?} If the circuit is composed, what is the Jacobian of the composite at a point? \quad[\texttt{jacobian}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'jacobian': \{'Sigma': \{'wiring': 'Phi -> Lambda -> mu', 'jacobian\_norm': 0.0001, 'jacobian\_shape': [5, 5], 'is': 'the matrix product of per-module Jacobians; composition of maps, not combination of meanings'\}\}, 'is': 'chain-rule Jacobians of the circuit composite; data, not semantics'\}}
+\item $\{\Omega,\,\Phi,\,\Tau,\,\Delta\}$ \quad \textbf{?} At which stage did each term enter the lineage? \quad[\texttt{filtration}]\\ \hspace*{1em}$\hookrightarrow$ \emph{recorded data (not an answer):} \texttt{\{'filtration': \{'Omega': \{'word': 'origin', 'birth\_time': 0, 'iota': 'stage 0'\}, 'Phi': \{'word': 'other', 'birth\_time': 1, 'iota': 'stage 1'\}, 'Tau': \{'word': 'time', 'birth\_time': 2, 'iota': 'stage 2'\}, 'Delta': \{'word': 'difference', 'birth\_time': 3, 'iota': 'stage 3'\}\}, 'is': 'birth times along the monotone chain; citations with dates, not meanings'\}}\end{itemize}
+\section*{Axioms and laws (fuzzy logic over the terms)}
+Memberships are taken from the relation geometry, $\mu(\sigma)=d(\sigma)/\max_\tau d(\tau)$:\begin{equation*}\mu(\Sigma){=}1.00,\;\; \mu(\Lambda){=}0.58,\;\; \mu(\mu){=}0.54,\;\; \mu(\Phi){=}0.48,\;\; \mu(\Omega){=}0.40,\;\; \mu(\Tau){=}0.37,\;\; \mu(\Delta){=}0.36\end{equation*}
+\noindent\textbf{Axioms} (authored postulates, not verified truths):\begin{itemize}\item \textsc{genesis}: $\,\Omega \Rightarrow \Sigma\,$\item \textsc{alterity}: $\,\Sigma \Rightarrow \Phi\,$\item \textsc{mediation}: $\,\Sigma \Rightarrow \Lambda\,$\item \textsc{distinction}: $\,\Sigma \Rightarrow \Delta\,$\item \textsc{finitude}: $\,\Sigma \Rightarrow \Tau\,$\end{itemize}
+\noindent\textbf{Laws.} Each large equation brings several terms together; the braces draw the reading. Each evaluates to a number in $[0,1]$ --- recorded as data, not as a verdict.
+\begin{equation*}\Sigma \Longleftrightarrow \overbrace{\Omega \oplus \Phi}^{\text{given: by origin and by the other}} \otimes \underbrace{\Lambda \Rightarrow \mu}_{\text{reached: through language, toward meaning}}\end{equation*}
+\begin{equation*}\neg \Sigma \Longleftarrow \overbrace{\Delta \otimes \mu}^{\text{difference shatters meaning}} \oplus \underbrace{\Tau \otimes \Lambda}_{\text{time writes upon language}}\end{equation*}
+\begin{equation*}\Sigma = \underbrace{\Omega \oplus \Phi}_{\text{the given}} \otimes \overbrace{\Lambda \Rightarrow \mu}^{\text{the mediated}} \ominus \underbrace{\Delta \otimes \Tau}_{\text{the dissolving}}\end{equation*}
+Under the memberships above, the laws evaluate to\begin{equation*}\textsc{constitution}\rightsquigarrow 0.480,\;\; \textsc{dissolution}\rightsquigarrow 0.630,\;\; \textsc{self}\rightsquigarrow 0.120\end{equation*}\noindent degrees to which authored postulates hold under authored memberships --- data, not truths about a self.
+\section*{Questions this stage poses}\begin{itemize}\item Does Ω give rise to Σ — and what precedes Ω?
+\item On what does Σ entailing Σ rest?
+\item When Σ is carried by Λ, what survives and what is lost?
+\item Is ∂Σ the same as μ, or is μ supplied by the reader?
+\item If Σ does not reduce to Ω, where is the remainder?
+\item Does Φ give rise to Σ — and what precedes Φ?
+\item Does Φ haunt Σ — present as an absence?
+\item What residue remains because Τ leaves a trace upon Λ?
+\item Does ∂Λ haunt μ — present as an absence?
+\item What collapses when Δ shatters the structure of μ?
+\item When ∂Τ is carried by Δ, what survives and what is lost?
+\item Can the self reconstruct itself from its own compression?
+\item Where, in this inquiry's own history, did origin, self, and language first enter?
+\item If a self is wired from other, language, and meaning, what does the composite return?
+\item To what degree do the authored laws of the self hold under the geometry?
+\item What is the geometry of the relations — and which term is the hub?
+\item If the circuit is composed, what is the Jacobian of the composite at a point?
+\item At which stage did each term enter the lineage?\end{itemize}
+\section*{Lineage read (this stage searched its ancestors)}This stage read 10 ancestor stages (\,0, 1, 2, 3, 4, 5, 6, 7, 8, 9\,) from their embedded sources, tracing 7 terms and 98 relations across the lineage. For example: $ \Omega $ (origin, from stage 0), $ \Sigma $ (self, from stage 0), $ \Lambda $ (language, from stage 0), $ \mu $ (meaning, from stage 0), $ \Phi $ (other, from stage 1). This is provenance retrieval --- where terms entered and what was said --- recorded as data, not a claim to understand the lineage.
+\section*{Manifold (the geometry of the relations)}
+\begin{figure}[H]\centering\includegraphics[width=0.92\textwidth]{manifold.png}
+\caption{A projection of the relation co-occurrence across the lineage. Left: how often terms share a relation (\(\Sigma\) is densest). Right: a UMAP projection of the same geometry. This is a map of the authored structure --- where the terms sit relative to one another --- not a discovery of hidden meaning. Computed by an external prototype (\texttt{umap\_manifold.py}); the engine only embeds it.}\end{figure}
+\section*{Symbolic weights (the trained network, written as glyphs)}
+Each trained weight is stored as a fraction $h/c$ --- an Egyptian hieroglyph over a cuneiform sign --- normalized to the recorded range. The runtime reconstructs the network by decoding these glyphs; no binary blob is attached. It looks like esoteric mathematics; it is a quantized weight matrix, and the symbols are the numbers, not meaning.
+\medskip\noindent $\Sigma$-module ($2{\to}2{\to}2$), 12 weights in range $[-2.45939,\,3.523463]$:
+\[ \frac{\glyph{𓀍}}{\cunei{𒂟}}\;\frac{\glyph{𓅖}}{\cunei{𒅝}}\;\frac{\glyph{𓅓}}{\cunei{𒆔}}\;\frac{\glyph{𓄱}}{\cunei{𒇓}}\;\frac{\glyph{𓁁}}{\cunei{𒃤}}\;\frac{\glyph{𓀛}}{\cunei{𒄆}}\;\frac{\glyph{𓀁}}{\cunei{𒀏}}\;\frac{\glyph{𓂫}}{\cunei{𒂸}}\;\frac{\glyph{𓀁}}{\cunei{𒀁}}\;\frac{\glyph{𓃲}}{\cunei{𒅵}}\;\frac{\glyph{𓂍}}{\cunei{𒇄}}\;\frac{\glyph{𓀀}}{\cunei{𒀁}} \]
+\section*{Lineage and provenance}
+This model extends its parent self-evolving inquiry, doi:10.5281/zenodo.20777747, ingesting
+its relations so the series can look fully back \cite{p6,paper1,paper2,p3}. The
+companion papers set out the method and its discipline \cite{paper1,paper2,paper3}.
+Actions record data beside questions; the document poses and enacts, and makes
+no claim to resolve what a self is.
+\section*{Appendix: self-extraction}
+This PDF carries its engine (\texttt{introspecter6.py}) and DSL
+(\texttt{self.dsl}) as embedded streams. Requires \texttt{pip install pypdf
+numpy} and a LaTeX install. To produce the next stage, save and run:
+\begin{Verbatim}[fontsize=\small,frame=single]
+import base64
+exec(base64.b64decode(
+  "aW1wb3J0IHN5cywgZ2xvYiwgb3MKc3lzLnBhdGguaW5zZXJ0KDAsICIuIi"
+  "kKZnJvbSBweXBkZiBpbXBvcnQgUGRmUmVhZGVyCmNhbmQgPSBOb25lCmZv"
+  "ciBmIGluIGdsb2IuZ2xvYigiKi5wZGYiKToKICAgIHRyeTogYSA9IFBkZl"
+  "JlYWRlcihmKS5hdHRhY2htZW50cwogICAgZXhjZXB0IEV4Y2VwdGlvbjog"
+  "Y29udGludWUKICAgIGlmICJpbnRyb3NwZWN0ZXI2LnB5IiBpbiBhIGFuZC"
+  "AoY2FuZCBpcyBOb25lIG9yIG9zLnBhdGguZ2V0bXRpbWUoZikgPiBvcy5w"
+  "YXRoLmdldG10aW1lKGNhbmQpKToKICAgICAgICBjYW5kID0gZgpwZGYgPS"
+  "BjYW5kIG9yIG1heChnbG9iLmdsb2IoIioucGRmIiksIGtleT1vcy5wYXRo"
+  "LmdldG10aW1lKQpmb3IgbmFtZSwgZGF0YSBpbiBQZGZSZWFkZXIocGRmKS"
+  "5hdHRhY2htZW50cy5pdGVtcygpOgogICAgb3BlbihuYW1lLCAid2IiKS53"
+  "cml0ZShkYXRhWzBdIGlmIGlzaW5zdGFuY2UoZGF0YSwgbGlzdCkgZWxzZS"
+  "BkYXRhKQppbXBvcnQgaW1wb3J0bGliLCBpbnRyb3NwZWN0ZXI2IGFzIEk7"
+  "IGltcG9ydGxpYi5yZWxvYWQoSSk7IEkuZXZvbHZlKCkK"))
+\end{Verbatim}
+\begin{thebibliography}{9}
+\bibitem{p6} B.~Hartshorn, \emph{Origin, Self, Language, Meaning, Other, Time,
+and Difference: A Self-Evolving Hypergraph} (self\_6, parent).
+doi:10.5281/zenodo.20710258
+\bibitem{paper1} B.~Hartshorn, \emph{Staging the Question of Self: A
+self-contained, self-modifying document that mixes poetry, philosophy, and
+code}. doi:10.5281/zenodo.20709754
+\bibitem{paper2} B.~Hartshorn, \emph{Enacting the Question of Self: Provenance,
+a hypergraph, and a differentiable route that records computation as data}.
+doi:10.5281/zenodo.20710444
+\bibitem{p3} B.~Hartshorn, \emph{Origin, Self, Language, Meaning, Other, Time,
+and Difference: A Self-Evolving Inquiry} (self\_3). doi:10.5281/zenodo.20707850
+\bibitem{paper3} B.~Hartshorn, \emph{The Question of Self: Matrix Inscriptions
+and Faux-Calculus}. doi:10.5281/zenodo.20814778
+\bibitem{agi} B.~Hartshorn, \emph{Towards Self-Evolving AGI via Emergent DSL}.
+viXra:2507.0104
+\bibitem{meta} B.~Hartshorn, \emph{Emergent Self-Modification and
+Meta-Programming in Dynamic Systems}. viXra:2507.0036
+\bibitem{arch} B.~Hartshorn, \emph{Self-Contained Multi-AI Architecture
+Definition via DSL}. viXra:2507.0074
+\end{thebibliography}\end{document}
