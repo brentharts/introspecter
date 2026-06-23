@@ -208,7 +208,7 @@ Stages (self-extracting PDFs, each extends the previous):
 |---|---|---|
 | 1 | **Staging the Question of Self** — a self-contained, self-modifying document that mixes poetry, philosophy, and code | [10.5281/zenodo.20709754](https://doi.org/10.5281/zenodo.20709754) |
 | 2 | **Enacting the Question of Self** — provenance, a hypergraph, and a differentiable route that records computation as data | [10.5281/zenodo.20710444](https://doi.org/10.5281/zenodo.20710444) |
-| 3 | **... the Question of Self** — ... | *(in preparation)* |
+| 3 | **The Question of Self** — Matrix Inscriptions and Faux-Calculus | [zenodo.20814778](https://doi.org/10.5281/zenodo.20814778) |
 
 The three papers move staging → enacting → measuring. Paper 3 formalizes
 provenance as a filtration (birth times along a monotone chain), the relations as
