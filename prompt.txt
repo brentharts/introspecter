@@ -1,0 +1,82 @@
+SELF-EVOLVING HYPERGRAPH — STAGE 12
+
+PARENT: local:self_11
+
+NODES:
+  Ω (Omega) = origin — that from which the self is said to come
+  Σ (Sigma) = self — the locus that poses and is altered by the question
+  Λ (Lambda) = language — the finite medium any self must pass through
+  μ (mu) = meaning — what a reader supplies, or finds, in the passage
+  Φ (Phi) = other — the one whose regard first gives the self to itself
+  Τ (Tau) = time — the direction in which the self cannot return
+  Δ (Delta) = difference — the gap that lets one thing be told from another
+  Ψ (Psi) = oracle — the voice that proposes beside the question without claiming to answer
+  ρ (rho) = field — the outward literature the inquiry reads without claiming to understand
+
+RELATIONS:
+  Omega -> Sigma  /* genesis */
+  Sigma |= Sigma  /* the reflexive claim */
+  Sigma (x) Lambda  /* reached only through language */
+  @Sigma ?= mu  /* is the self's changing the same as meaning? */
+  Sigma -< Omega  /* not merely its origin */
+  Phi -> Sigma  /* the self is given by the other */
+  Phi ~> Sigma  /* the other haunts the self */
+  Tau *> Lambda  /* time writes upon the word */
+  @Lambda ~> mu  /* the shift in language is haunted by vanished meaning */
+  Delta !> mu  /* difference shatters stable meaning */
+  @Tau (x) Delta  /* the passage of time is carried by difference */
+  Psi <~ Sigma  /* the oracle proposes beside the self */
+  rho (x) Lambda  /* the field is carried by language */
+  Psi <~ rho  /* the oracle proposes beside the field */
+  @rho ?= Omega  /* does the field question origin? */
+
+HYPEREDGES:
+  { Sigma } ? "Can the self reconstruct itself from its own compression?" ! train
+  { Omega, Sigma, Lambda } ? "Where, in this inquiry's own history, did origin, self, and language first enter?" ! provenance
+  { Phi, Lambda, mu, Sigma } ? "If a self is wired from other, language, and meaning, what does the composite return?" ! circuit
+  { Sigma, Phi, Lambda, mu, Delta, Tau } ? "To what degree do the authored laws of the self hold under the geometry?" ! law
+  { Omega, Sigma, Lambda, mu, Phi, Tau, Delta } ? "What is the geometry of the relations — and which term is the hub?" ! geometry
+  { Phi, Lambda, mu, Sigma } ? "If the circuit is composed, what is the Jacobian of the composite at a point?" ! jacobian
+  { Omega, Phi, Tau, Delta } ? "At which stage did each term enter the lineage?" ! filtration
+  { Omega, Sigma, Lambda, mu, Phi, Tau, Delta, Psi } ? "Where does each term sit in the spectral embedding of the relation Laplacian?" ! spectrum
+  { Psi, Sigma } ? "What increment did the oracle propose for this stage — and what changed?" ! oracle
+  { rho, Lambda, Sigma } ? "What outward papers speak to origin, language, and self?" ! search
+  { rho } ? "Which allowlisted PDFs were retrieved and stored beside the inquiry?" ! fetch
+  { rho, mu } ? "What phrases survive when the corpus is carried toward meaning?" ! ingest
+  { Psi, Sigma, rho } ? "What module architecture does the oracle propose from field and hub geometry?" ! propose
+
+QUESTIONS:
+  - Does Ω give rise to Σ — and what precedes Ω?
+  - On what does Σ entailing Σ rest?
+  - When Σ is carried by Λ, what survives and what is lost?
+  - Is ∂Σ the same as μ, or is μ supplied by the reader?
+  - If Σ does not reduce to Ω, where is the remainder?
+  - Does Φ give rise to Σ — and what precedes Φ?
+  - Does Φ haunt Σ — present as an absence?
+  - What residue remains because Τ leaves a trace upon Λ?
+  - Does ∂Λ haunt μ — present as an absence?
+  - What collapses when Δ shatters the structure of μ?
+  - When ∂Τ is carried by Δ, what survives and what is lost?
+  - Does Ψ propose beside Σ without claiming to answer?
+  - When ρ is carried by Λ, what survives and what is lost?
+  - Does Ψ propose beside ρ without claiming to answer?
+  - Is ∂ρ the same as Ω, or is Ω supplied by the reader?
+  - Can the self reconstruct itself from its own compression?
+  - Where, in this inquiry's own history, did origin, self, and language first enter?
+  - If a self is wired from other, language, and meaning, what does the composite return?
+  - To what degree do the authored laws of the self hold under the geometry?
+  - What is the geometry of the relations — and which term is the hub?
+  - If the circuit is composed, what is the Jacobian of the composite at a point?
+  - At which stage did each term enter the lineage?
+  - Where does each term sit in the spectral embedding of the relation Laplacian?
+  - What increment did the oracle propose for this stage — and what changed?
+  - What outward papers speak to origin, language, and self?
+  - Which allowlisted PDFs were retrieved and stored beside the inquiry?
+  - What phrases survive when the corpus is carried toward meaning?
+  - What module architecture does the oracle propose from field and hub geometry?
+
+INSTRUCTION FOR THE ORACLE:
+Propose the next stage increment: new nodes, relations, hyperedges,
+and/or ```python``` engine extensions. Record computation as data,
+never as an answer. The increment may be applied programmatically
+via auto_evolve.py or evolve_auto().

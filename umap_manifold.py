@@ -9,7 +9,7 @@ authored relation structure, not a discovery about selfhood.
 import sys, json, glob
 sys.path.insert(0, ".")
 import numpy as np
-import introspecter5 as I
+import introspecter8 as I
 
 
 def geometry(dsl_path="self.dsl"):

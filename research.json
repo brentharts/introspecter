@@ -1,0 +1,222 @@
+{
+  "search": {
+    "queries": [
+      "self origin self language meaning other neuro-symbolic",
+      "neuro-symbolic self-modifying DSL",
+      "introspective knowledge generation emergent DSL",
+      "self-evolving hypergraph provenance",
+      "machine language emergence neural symbolic"
+    ],
+    "hits": [
+      {
+        "id": "1411.6643v4",
+        "title": "Quantum memories at finite temperature",
+        "summary": "To use quantum systems for technological applications we first need to preserve their coherence for macroscopic timescales, even at finite temperature. Quantum error correction has made it possible to actively correct errors that affect a quantum memory. An attractive scenario is the construction of passive storage of quantum information with minimal active support. Indeed, passive protection is t",
+        "pdf_url": "https://arxiv.org/pdf/1411.6643v4.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "2509.02918v1",
+        "title": "Single Domain Generalization in Diabetic Retinopathy: A Neuro-Symbolic Learning Approach",
+        "summary": "Domain generalization remains a critical challenge in medical imaging, where models trained on single sources often fail under real-world distribution shifts. We propose KG-DG, a neuro-symbolic framework for diabetic retinopathy (DR) classification that integrates vision transformers with expert-guided symbolic reasoning to enable robust generalization across unseen domains. Our approach leverages",
+        "pdf_url": "https://arxiv.org/pdf/2509.02918v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "1307.7872v1",
+        "title": "Generating functionals for guided self-organization",
+        "summary": "Time evolution equations for dynamical systems can often be derived from generating functionals. Examples are Newton's equations of motion in classical dynamics which can be generated within the Lagrange or the Hamiltonian formalism. We propose that generating functionals for self-organizing complex systems offer several advantages. Generating functionals allow to formulate complex dynamical syste",
+        "pdf_url": "https://arxiv.org/pdf/1307.7872v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "2412.15588v1",
+        "title": "NeSyCoCo: A Neuro-Symbolic Concept Composer for Compositional Generalization",
+        "summary": "Compositional generalization is crucial for artificial intelligence agents to solve complex vision-language reasoning tasks. Neuro-symbolic approaches have demonstrated promise in capturing compositional structures, but they face critical challenges: (a) reliance on predefined predicates for symbolic representations that limit adaptability, (b) difficulty in extracting predicates from raw data, an",
+        "pdf_url": "https://arxiv.org/pdf/2412.15588v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "2506.01121v1",
+        "title": "Neuro-Symbolic Generative Diffusion Models for Physically Grounded, Robust, and Safe Generation",
+        "summary": "Despite the remarkable generative capabilities of diffusion models, their integration into safety-critical or scientifically rigorous applications remains hindered by the need to ensure compliance with stringent physical, structural, and operational constraints. To address this challenge, this paper introduces Neuro-Symbolic Diffusion (NSD), a novel framework that interleaves diffusion steps with ",
+        "pdf_url": "https://arxiv.org/pdf/2506.01121v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "1109.0778v1",
+        "title": "Building-Blocks for Performance Oriented DSLs",
+        "summary": "Domain-specific languages raise the level of abstraction in software development. While it is evident that programmers can more easily reason about very high-level programs, the same holds for compilers only if the compiler has an accurate model of the application domain and the underlying target platform. Since mapping high-level, general-purpose languages to modern, heterogeneous hardware is bec",
+        "pdf_url": "https://arxiv.org/pdf/1109.0778v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "1109.0784v1",
+        "title": "Implementing Explicit and Finding Implicit Sharing in Embedded DSLs",
+        "summary": "Aliasing, or sharing, is prominent in many domains, denoting that two differently-named objects are in fact identical: a change in one object (memory cell, circuit terminal, disk block) is instantly reflected in the other.  Languages for modelling such domains should let the programmer explicitly define the sharing among objects or expressions. A DSL compiler may find other identical expressions a",
+        "pdf_url": "https://arxiv.org/pdf/1109.0784v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "1109.0776v1",
+        "title": "SAGA: A DSL for Story Management",
+        "summary": "Video game development is currently a very labour-intensive endeavour. Furthermore it involves multi-disciplinary teams of artistic content creators and programmers, whose typical working patterns are not easily meshed.  SAGA is our first effort at augmenting the productivity of such teams.\n  Already convinced of the benefits of DSLs, we set out to analyze the domains present in games in order to ",
+        "pdf_url": "https://arxiv.org/pdf/1109.0776v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "2603.25111v2",
+        "title": "SEVerA: Verified Synthesis of Self-Evolving Agents",
+        "summary": "Recent advances have shown the effectiveness of self-evolving LLM agents on tasks such as program repair and scientific discovery. In this paradigm, a planner LLM synthesizes an agent program that invokes parametric models, including LLMs, which are then tuned per task to improve performance. However, existing self-evolving agent frameworks provide no formal guarantees of safety or correctness. Be",
+        "pdf_url": "https://arxiv.org/pdf/2603.25111v2.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "2508.07407v2",
+        "title": "A Comprehensive Survey of Self-Evolving AI Agents: A New Paradigm Bridging Foundation Models and Lifelong Agentic Systems",
+        "summary": "Recent advances in large language models have sparked growing interest in AI agents capable of solving complex, real-world tasks. However, most existing agent systems rely on manually crafted configurations that remain static after deployment, limiting their ability to adapt to dynamic and evolving environments. To this end, recent research has explored agent evolution techniques that aim to autom",
+        "pdf_url": "https://arxiv.org/pdf/2508.07407v2.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "1909.00234v1",
+        "title": "The spectrum of a class of uniform hypergraphs",
+        "summary": "A generalized power hypergraph $\\mathcal{H}^k_s$ is obtained from a base hypergraph $\\mathcal{H}$ by means of some simple edge-expansion operations. Kang, Liu, Qi and Yuan [8] proved that the nonzero eigenvalues of $\\mathcal{H}$ give rise to nonzero eigenvalues of $\\mathcal{H}^k_s$. In this paper we show that all nonzero eigenvalues of $\\mathcal{H}^k_s$ may be computed from the eigenvalues of its ",
+        "pdf_url": "https://arxiv.org/pdf/1909.00234v1.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      },
+      {
+        "id": "1702.01806v2",
+        "title": "Beam Search Strategies for Neural Machine Translation",
+        "summary": "The basic concept in Neural Machine Translation (NMT) is to train a large Neural Network that maximizes the translation performance on a given parallel corpus. NMT is then using a simple left-to-right beam-search decoder to generate new translations that approximately maximize the trained conditional probability. The current beam search strategy generates the target sentence word by word from left",
+        "pdf_url": "https://arxiv.org/pdf/1702.01806v2.pdf",
+        "is": "a bibliographic hit from arXiv; not evidence about a self"
+      }
+    ],
+    "is": "outward search results; titles and ids, not understanding"
+  },
+  "fetch": {
+    "downloaded": [
+      {
+        "source": "vixra",
+        "id": "2507.0104",
+        "title": "Towards Self-Evolving AGI via Emergent DSL",
+        "path": "corpus/2507.0104v1.pdf"
+      },
+      {
+        "source": "vixra",
+        "id": "2507.0074",
+        "title": "Self-Contained Multi-AI Architecture Definition via DSL",
+        "path": "corpus/2507.0074v1.pdf"
+      },
+      {
+        "source": "vixra",
+        "id": "2507.0036",
+        "title": "Emergent Self-Modification and Meta-Programming",
+        "path": "corpus/2507.0036v1.pdf"
+      },
+      {
+        "source": "arxiv",
+        "id": "1411.6643v4",
+        "title": "Quantum memories at finite temperature",
+        "path": "corpus/1411.6643v4.pdf"
+      },
+      {
+        "source": "arxiv",
+        "id": "2509.02918v1",
+        "title": "Single Domain Generalization in Diabetic Retinopathy: A Neuro-Symbolic Learning Approach",
+        "path": "corpus/2509.02918v1.pdf"
+      },
+      {
+        "source": "arxiv",
+        "id": "1307.7872v1",
+        "title": "Generating functionals for guided self-organization",
+        "path": "corpus/1307.7872v1.pdf"
+      }
+    ],
+    "errors": [],
+    "corpus_dir": "corpus",
+    "is": "files stored beside the inquiry; storage, not comprehension"
+  },
+  "ingest": {
+    "snippets": [
+      {
+        "file": "1307.7872v1.pdf",
+        "term_hits": 49,
+        "excerpt": "arXiv:1307.7872v1  [q-bio.NC]  30 Jul 2013 1 Generating functionals for guided self-organization Claudius Gros Institute for Theoretical Physics, Goethe University Frankfurt, Germany 1.1 Controlling Complex Systems One may take it as a running joke, that complex systems are com plex since they are complex. It is however important to realize, this being said, that complex systems come in a large varieties, and in many complexity classes, rangin g from relatively simple to extraordinary complex. One may distinguish in this conte xt between classical and modern complex system theory. In the classical approach one would t ypically study a standardized model, like the Lorentz model or the logistic map, being described usually by maximally a handful of variables and parameters ( Gros 2008). Many",
+        "is": "extracted text; co-occurrence with authored terms, not meaning"
+      },
+      {
+        "file": "1411.6643v4.pdf",
+        "term_hits": 34,
+        "excerpt": "Quantum memories at \ufb01nite temperature Benjamin J. Brown, 1, 2 Daniel Loss, 3 Jiannis K. Pachos, 4 Chris N. Self, 1, 4 and James R. Wootton 3 1Quantum Optics and Laser Science, Blackett Laboratory, Imperial College London, Prince Consort Road, London, SW7 2AZ, United Kingdom 2Niels Bohr International Academy, Niels Bohr Institute, Blegdamsvej 17, 2100 Copenhagen, Denmark 3Department of Physics, University of Basel, Klingelbergstrasse 82, CH-4056 Basel, Switzerland 4School of Physics and Astronomy, University of Leeds, Leeds LS2 9JT, United Kingdom To use quantum systems for technological applications we \ufb01rst need to preserve their coherence for macroscopic timescales, even at \ufb01nite temperature. Quantum error correction has made it possible to actively correct errors that a\ufb00ect a quantum mem",
+        "is": "extracted text; co-occurrence with authored terms, not meaning"
+      },
+      {
+        "file": "2507.0036v1.pdf",
+        "term_hits": 114,
+        "excerpt": "is then executed within the system's global namespace  using Python's exec() function. \u2022 The DSL() function parses the original DSL string (passed as an argument). \u2022 It uses the \u010aoncept class to construct an Abstract Syntax Tree (AST). \u2022 It then calls write.python() (which internally uses \u010aoncept.as_python()) to generate the full Python source code for the function (e.g., def game_of_life(g):\\n ...). \u2022 Finally, it exec()utes this generated Python function string itself, dynamically defining or redefining the game_of_life function (or  other target functions) within the running environment. 3. Functional Replacement: Subsequent calls within the system that reference game_of_life will now automatically use the newly defined  function. This mechanism effectively \"rewrites\" that part of the sy",
+        "is": "extracted text; co-occurrence with authored terms, not meaning"
+      },
+      {
+        "file": "2507.0074v1.pdf",
+        "term_hits": 212,
+        "excerpt": "Self Contained Multi-AI Architecture Definition via DSL Brent Hartshorn July 13th Abstract This paper presents a significant evolution in emergent computational systems, extending the Domain-Specific Language (DSL) driven self- modification paradigm to encompass foundational components beyond neural network architectures and cellular automata rules. Building on prior work  where the AI could define its Game of Life (GOL) stepping function and classifier network via a tokenized DSL, we now demonstrate the system's  capacity to articulate and dynamically replace its fractal generation algorithms (e.g., Burning Ship and Mandelbrot). By expressing these complex  mathematical functions within the same learnable DSL, the system gains a deeper level of meta-programming, enabling the AI to not onl",
+        "is": "extracted text; co-occurrence with authored terms, not meaning"
+      },
+      {
+        "file": "2507.0104v1.pdf",
+        "term_hits": 191,
+        "excerpt": "Towards Self-Evolving Artificial General Intelligence: Multi-Modal Learning and Introspective Knowledge Generation via Emergent DSL Brent Hartshorn July 21, 2025  brenthartshorn@proton.me Abstract:  This paper presents significant advancements in the development of a self-modifying Artificial General Intelligence (AGI) system, building  upon a foundation of fractal-initialized Game of Life (GOL) dynamics and spatiotemporal spectral analysis. We introduce a novel integration of UMAP for dynamic dimensionality reduction of GOL spectral output, enabling enhanced multi-step reasoning capabilities. Crucially, the system demonstrates  emergent \"self-research\" by autonomously downloading and parsing research papers to construct an internal knowledge graph, fostering a unique blend of  self-unders",
+        "is": "extracted text; co-occurrence with authored terms, not meaning"
+      },
+      {
+        "file": "2509.02918v1.pdf",
+        "term_hits": 17,
+        "excerpt": "on or transfer learning, DG uniquely addresses scenarios where no target domain data is accessible during training. The original motivation behind DG stemmed from a medical application known as automatic gating in flow cytometry [ 5]. This technique involves classifying cells in blood samples\u2014such as distinguishing lymphocytes from non-lymphocytes\u2014based on measured cellular properties. While such automation can significantly aid in diagnosis by replacing the labor-intensive and expert-dependent manual gating process, patient-specific distribution shifts hinder model generalization. Collecting new labeled data for every patient is not feasible, thereby underscoring the need for DG solutions. In medical imaging, domain shift is especially prevalent due to variations across clinical sites and",
+        "is": "extracted text; co-occurrence with authored terms, not meaning"
+      }
+    ],
+    "files": [
+      "1307.7872v1.pdf",
+      "1411.6643v4.pdf",
+      "2507.0036v1.pdf",
+      "2507.0074v1.pdf",
+      "2507.0104v1.pdf",
+      "2509.02918v1.pdf"
+    ],
+    "n_files": 6,
+    "is": "corpus ingest; phrases beside the question, not an answer"
+  },
+  "propose": {
+    "proposals": [
+      {
+        "node": "Sigma",
+        "arch": "2->4->2",
+        "activation": "sigmoid",
+        "task": "autoencode",
+        "note": "wider hidden layer beside low law_self score; proposal only"
+      },
+      {
+        "node": "Psi",
+        "arch": "3->4->3",
+        "activation": "sigmoid",
+        "task": "autoencode",
+        "note": "oracle module mirroring propose-side width; proposal only"
+      },
+      {
+        "circuit": "rho = Psi -> Lambda -> mu",
+        "width": 4,
+        "note": "field routed through language toward meaning; symbolic wiring only"
+      }
+    ],
+    "corpus_keywords": [
+      "dsl",
+      "introspect",
+      "self-modif"
+    ],
+    "hub": "Sigma",
+    "law_self": 0.1,
+    "is": "authored architecture suggestions over analysis + corpus; not evidence that a self or model was discovered"
+  }
+}
